@@ -13,15 +13,14 @@ export default function ProfilPage({ navigate }) {
   };
 
   const infos = [
-    { icon: User, label: "Nom complet", value: currentUser?.nom },
-    { icon: Mail, label: "Email", value: currentUser?.email },
-    { icon: Phone, label: "Téléphone", value: currentUser?.telephone },
-    { icon: MapPin, label: "Adresse", value: currentUser?.adresse },
+    { icon: User, label: "Полное имя", value: currentUser?.nom },
+    { icon: Mail, label: "Электронная почта", value: currentUser?.email },
+    { icon: Phone, label: "Телефон", value: currentUser?.telephone },
+    { icon: MapPin, label: "Адрес", value: currentUser?.adresse },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50 pb-24 flex flex-col">
-      {/* Header */}
       <header className="bg-white border-b border-gray-200 px-4 py-3 sticky top-0 z-50">
         <div className="max-w-lg mx-auto flex items-center gap-4">
           <button onClick={() => navigate("dashboard")} className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition">
@@ -32,25 +31,23 @@ export default function ProfilPage({ navigate }) {
       </header>
 
       <main className="max-w-lg mx-auto w-full px-4 py-6 space-y-5">
-        <h1 className="text-xl font-bold text-gray-900">Mon profil</h1>
+        <h1 className="text-xl font-bold text-gray-900">Мой профиль</h1>
 
-        {/* Avatar */}
         <div className="bg-white rounded-2xl shadow-sm p-6 flex items-center gap-4">
           <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
-            {currentUser?.nom?.charAt(0) || "G"}
+            {currentUser?.nom?.charAt(0) || "К"}
           </div>
           <div>
             <p className="font-bold text-gray-900 text-lg">{currentUser?.nom}</p>
-            <p className="text-gray-500 text-sm">Client SBERBANK</p>
+            <p className="text-gray-500 text-sm">Клиент SBERBANK</p>
             <span className="inline-block mt-1 bg-red-100 text-red-700 text-xs font-semibold px-2 py-0.5 rounded-full">
-              Compte active
+              Счёт активен
             </span>
           </div>
         </div>
 
-        {/* Informations */}
         <div className="bg-white rounded-2xl shadow-sm p-5 space-y-1">
-          <h2 className="font-bold text-gray-800 mb-3">Informations personnelles</h2>
+          <h2 className="font-bold text-gray-800 mb-3">Личная информация</h2>
           {infos.map(({ icon: Icon, label, value }) => (
             <div key={label} className="flex items-start gap-4 py-3 border-b border-gray-100 last:border-0">
               <div className="w-9 h-9 bg-red-50 rounded-full flex items-center justify-center shrink-0">
@@ -64,9 +61,8 @@ export default function ProfilPage({ navigate }) {
           ))}
         </div>
 
-        {/* Compte bancaire */}
         <div className="bg-white rounded-2xl shadow-sm p-5 space-y-3">
-          <h2 className="font-bold text-gray-800 mb-3">Informations bancaires</h2>
+          <h2 className="font-bold text-gray-800 mb-3">Банковские реквизиты</h2>
           <div className="py-3 border-b border-gray-100">
             <p className="text-xs text-gray-400 mb-0.5">IBAN</p>
             <p className="text-sm font-mono font-semibold text-gray-800">{currentUser?.numeroCompte}</p>
@@ -77,13 +73,10 @@ export default function ProfilPage({ navigate }) {
           </div>
         </div>
 
-        {/* Déconnexion */}
-        <button
-          onClick={handleLogout}
-          className="w-full bg-white border-2 border-red-200 text-red-600 font-bold py-4 rounded-2xl flex items-center justify-center gap-2 hover:bg-red-50 transition shadow-sm"
-        >
+        <button onClick={handleLogout}
+          className="w-full bg-white border-2 border-red-200 text-red-600 font-bold py-4 rounded-2xl flex items-center justify-center gap-2 hover:bg-red-50 transition shadow-sm">
           <LogOut size={20} />
-          Se déconnecter
+          Выйти из аккаунта
         </button>
       </main>
 

@@ -9,30 +9,30 @@ export default function DocumentsPage({ navigate }) {
   const [downloaded, setDownloaded] = useState(null);
 
   const formatMontant = (m) =>
-    new Intl.NumberFormat("fr-FR", { minimumFractionDigits: 2 }).format(m);
+    new Intl.NumberFormat("ru-RU", { minimumFractionDigits: 2 }).format(m);
 
-  const today = new Date().toLocaleDateString("fr-FR");
+  const today = new Date().toLocaleDateString("ru-RU");
 
   const downloadRIB = () => {
     const content = `
 ╔══════════════════════════════════════════════════════╗
-║         RELEVÉ D'IDENTITÉ BANCAIRE (RIB)             ║
+║         БАНКОВСКИЕ РЕКВИЗИТЫ (RIB)                   ║
 ╚══════════════════════════════════════════════════════╝
 
 SBERBANK
 ─────────────────────────────────────
 
-TITULAIRE
-Nom : ${currentUser?.nom}
-Adresse : ${currentUser?.adresse}
+ВЛАДЕЛЕЦ СЧЁТА
+Имя : ${currentUser?.nom}
+Адрес : ${currentUser?.adresse}
 
-COORDONNÉES BANCAIRES
+БАНКОВСКИЕ ДАННЫЕ
 IBAN : ${currentUser?.numeroCompte}
 BIC  : ${currentUser?.bic}
 
-Date d'édition : ${today}
+Дата выдачи : ${today}
 
-Ce document certifie l'exactitude des coordonnées bancaires.
+Настоящий документ подтверждает правильность банковских реквизитов.
 ──────────────────────────────────────────────────────
 © 2026 SBERBANK
     `.trim();
@@ -51,29 +51,29 @@ Ce document certifie l'exactitude des coordonnées bancaires.
   const downloadReleve = () => {
     const content = `
 ╔══════════════════════════════════════════════════════╗
-║              RELEVÉ DE COMPTE BANCAIRE               ║
+║              ВЫПИСКА ПО СЧЁТУ                        ║
 ╚══════════════════════════════════════════════════════╝
 
 SBERBANK
-Relevé du ${today}
+Выписка от ${today}
 ─────────────────────────────────────
 
-TITULAIRE : ${currentUser?.nom}
-COMPTE N° : ${currentUser?.numeroCompte}
+ВЛАДЕЛЕЦ : ${currentUser?.nom}
+СЧЁТ № : ${currentUser?.numeroCompte}
 BIC       : ${currentUser?.bic}
 
-SOLDE ACTUEL : ${formatMontant(currentUser?.solde)} ${currentUser?.devise}
+ТЕКУЩИЙ БАЛАНС : ${formatMontant(currentUser?.solde)} ${currentUser?.devise}
 
 ═══════════════════════════════════════
-DERNIÈRES OPÉRATIONS
+ПОСЛЕДНИЕ ОПЕРАЦИИ
 ═══════════════════════════════════════
 
 ${(currentUser?.transactions || []).map(op =>
-  `${new Date(op.date).toLocaleDateString("fr-FR").padEnd(12)} | ${op.libelle.padEnd(35)} | ${op.montant > 0 ? "+" : ""}${formatMontant(op.montant)} ${currentUser?.devise}`
+  `${new Date(op.date).toLocaleDateString("ru-RU").padEnd(12)} | ${op.libelle.padEnd(35)} | ${op.montant > 0 ? "+" : ""}${formatMontant(op.montant)} ${currentUser?.devise}`
 ).join("\n")}
 
 ═══════════════════════════════════════
-Document généré le ${today}
+Документ сформирован ${today}
 © 2026 SBERBANK
     `.trim();
 
@@ -81,7 +81,7 @@ Document généré le ${today}
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `Releve_${currentUser?.nom?.replace(/\s/g, "_")}.txt`;
+    a.download = `Vypiska_${currentUser?.nom?.replace(/\s/g, "_")}.txt`;
     a.click();
     URL.revokeObjectURL(url);
     setDownloaded("releve");
@@ -91,15 +91,15 @@ Document généré le ${today}
   const docs = [
     {
       id: "rib",
-      titre: "Relevé d'Identité Bancaire",
-      description: "IBAN, BIC et coordonnées bancaires complètes",
+      titre: "Банковские реквизиты",
+      description: "IBAN, BIC и полные банковские данные",
       action: downloadRIB,
       emoji: "🏦",
     },
     {
       id: "releve",
-      titre: "Relevé de compte",
-      description: "Historique des opérations et solde actuel",
+      titre: "Выписка по счёту",
+      description: "История операций и текущий баланс",
       action: downloadReleve,
       emoji: "📊",
     },
@@ -117,7 +117,7 @@ Document généré le ${today}
       </header>
 
       <main className="max-w-lg mx-auto w-full px-4 py-6 space-y-4">
-        <h1 className="text-xl font-bold text-gray-900">Mes documents</h1>
+        <h1 className="text-xl font-bold text-gray-900">Мои документы</h1>
 
         <div className="space-y-3">
           {docs.map((doc) => (
@@ -129,17 +129,11 @@ Document généré le ${today}
                 <p className="font-bold text-gray-800 text-sm">{doc.titre}</p>
                 <p className="text-xs text-gray-500 mt-0.5">{doc.description}</p>
               </div>
-              <button
-                onClick={doc.action}
+              <button onClick={doc.action}
                 className={`w-10 h-10 rounded-full flex items-center justify-center transition shrink-0 ${
-                  downloaded === doc.id
-                    ? "bg-green-500 text-white"
-                    : "bg-red-600 hover:bg-red-700 text-white"
-                }`}
-              >
-                {downloaded === doc.id
-                  ? <CheckCircle size={18} />
-                  : <Download size={18} />}
+                  downloaded === doc.id ? "bg-green-500 text-white" : "bg-red-600 hover:bg-red-700 text-white"
+                }`}>
+                {downloaded === doc.id ? <CheckCircle size={18} /> : <Download size={18} />}
               </button>
             </div>
           ))}
@@ -147,7 +141,7 @@ Document généré le ${today}
 
         <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4">
           <p className="text-sm text-blue-800">
-            💡 Les documents sont générés en temps réel avec vos informations bancaires actuelles.
+            💡 Документы формируются в режиме реального времени на основе ваших текущих банковских данных.
           </p>
         </div>
       </main>

@@ -7,36 +7,36 @@ const notifications = [
   {
     id: 1,
     type: "danger",
-    titre: "Compte bloqué",
-    message: "Votre compte a été temporairement bloqué pour des raisons de sécurité. Contactez votre conseiller.",
-    date: "Aujourd'hui, 09:14",
+    titre: "Счёт заблокирован",
+    message: "Ваш счёт временно заблокирован по соображениям безопасности. Свяжитесь с вашим консультантом.",
+    date: "Сегодня, 09:14",
     icon: Lock,
     lu: false,
   },
   {
     id: 2,
     type: "warning",
-    titre: "Carte bancaire bloquée",
-    message: "Votre carte Visa se terminant par 4298 est bloquée suite au blocage de votre compte.",
-    date: "Aujourd'hui, 09:15",
+    titre: "Банковская карта заблокирована",
+    message: "Ваша карта Visa, заканчивающаяся на 4298, заблокирована в связи с блокировкой вашего счёта.",
+    date: "Сегодня, 09:15",
     icon: AlertTriangle,
     lu: false,
   },
   {
     id: 3,
     type: "info",
-    titre: "Virement reçu",
-    message: "Vous avez reçu un virement de 924 607 RUB sur votre compte.",
-    date: "20 mai 2026",
+    titre: "Входящий перевод",
+    message: "На ваш счёт поступил перевод на сумму 924 607 RUB.",
+    date: "20 мая 2026",
     icon: Info,
     lu: true,
   },
   {
     id: 4,
     type: "info",
-    titre: "Connexion détectée",
-    message: "Une nouvelle connexion a été détectée sur votre compte depuis un appareil inconnu.",
-    date: "19 mai 2026",
+    titre: "Обнаружен новый вход",
+    message: "На вашем аккаунте зафиксирован вход с неизвестного устройства.",
+    date: "19 мая 2026",
     icon: Bell,
     lu: true,
   },
@@ -68,9 +68,9 @@ export default function NotificationsPage({ navigate }) {
 
       <main className="max-w-lg mx-auto w-full px-4 py-6 space-y-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold text-gray-900">Notifications</h1>
+          <h1 className="text-xl font-bold text-gray-900">Уведомления</h1>
           <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
-            {notifications.filter(n => !n.lu).length} nouvelles
+            {notifications.filter(n => !n.lu).length} новых
           </span>
         </div>
 

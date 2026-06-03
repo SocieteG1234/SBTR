@@ -99,7 +99,7 @@ export default function CartePage({ navigate }) {
           <div className="flex justify-between items-center py-3">
             <span className="text-sm text-gray-600">Statut</span>
             <span className="bg-red-100 text-red-700 font-bold text-xs px-3 py-1 rounded-full flex items-center gap-1">
-              <Lock size={11} /> Bloquée
+              <Lock size={11} /> active
             </span>
           </div>
         </div>

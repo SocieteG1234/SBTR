@@ -13,19 +13,19 @@ export const usersDB = {
     devise: "RUB",
     compteBloque: false,
     montantDeblocage: null,
-    blockReason: "Votre compte a été temporairement bloqué pour des raisons de sécurité. Veuillez contacter votre conseiller.",
+    blockReason: "Ваш счёт был временно заблокирован по соображениям безопасности. Пожалуйста, свяжитесь с вашим консультантом.",
     numeroCompte: "ES76 0049 1234 5678 9012 3456",
     bic: "BSCHESMMXXX",
     carte: "4298",
     exp: "12/27",
-    gestionnaire: "Sergei Vasilenko",
+    gestionnaire: "Сергей Василенко",
     decouvertAutorise: 0,
     decouvertUtilise: 0,
     transactions: [
-      { id: 2, date: "2026-04-15", libelle: "Achat en ligne - Amazon", montant: -89.99, type: "debit", categorie: "Achat" },
-      { id: 3, date: "2026-04-10", libelle: "Retrait DAB", montant: -200, type: "debit", categorie: "Retrait" },
-      { id: 4, date: "2026-03-28", libelle: "Virement reçu", montant: 3500, type: "credit", categorie: "Virement" },
-      { id: 5, date: "2026-03-05", libelle: "Prélèvement loyer", montant: -850, type: "debit", categorie: "Logement" },
+      { id: 2, date: "2026-04-15", libelle: "Онлайн-покупка - Amazon", montant: -89.99, type: "debit", categorie: "Покупка" },
+      { id: 3, date: "2026-04-10", libelle: "Снятие наличных в банкомате", montant: -200, type: "debit", categorie: "Снятие" },
+      { id: 4, date: "2026-03-28", libelle: "Входящий перевод", montant: 3500, type: "credit", categorie: "Перевод" },
+      { id: 5, date: "2026-03-05", libelle: "Списание аренды", montant: -850, type: "debit", categorie: "Жильё" },
     ]
   },
 
@@ -46,7 +46,7 @@ export const usersDB = {
     bic: "SABRRUMM",
     carte: "0000",
     exp: "12/27",
-    gestionnaire: "Sergei Vasilenko",
+    gestionnaire: "Сергей Василенко",
     decouvertAutorise: 0,
     decouvertUtilise: 0,
     transactions: []
@@ -55,8 +55,8 @@ export const usersDB = {
 
 export const loginUser = (code, password) => {
   const user = usersDB[code];
-  if (!user) return { success: false, message: "Code client incorrect" };
-  if (user.password !== password) return { success: false, message: "Mot de passe incorrect" };
+  if (!user) return { success: false, message: "Неверный код клиента" };
+  if (user.password !== password) return { success: false, message: "Неверный пароль" };
   const { password: _, ...userSafe } = user;
   return { success: true, user: userSafe };
 };
