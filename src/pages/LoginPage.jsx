@@ -145,7 +145,7 @@ export default function LoginPage({ navigate }) {
       </div>
 
       <div className="text-center py-4 text-xs text-gray-400 border-t">
-        © 2026 SBERBANK – Все права защищены
+        © 2009 SBERBANK – Все права защищены
       </div>
     </div>
   );

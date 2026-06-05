@@ -99,7 +99,7 @@ export default function VirementPage({ navigate }) {
             <p className="text-base font-bold text-gray-800">Sergei Vasilenko</p>
             <p className="text-xs text-gray-400 mt-1">sergei.vasilenko@sberbank.ru</p>
           </div>
-          <div className="text-xs text-gray-400 pt-2">© 2026 SBERBANK</div>
+          <div className="text-xs text-gray-400 pt-2">© 2018 SBERBANK</div>
         </div>
       </div>
     );
@@ -208,7 +208,7 @@ export default function VirementPage({ navigate }) {
       </main>
 
       <div className="text-center py-4 text-xs text-gray-400 border-t bg-white mt-auto">
-        © 2026 SBERBANK
+        © 2009 SBERBANK
       </div>
     </div>
   );
